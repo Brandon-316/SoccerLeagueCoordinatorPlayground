@@ -47,6 +47,7 @@
 		73CDA7271D87B124003E5EB1 /* SoccerLeagueCoordinatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoccerLeagueCoordinatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		73CDA72B1D87B124003E5EB1 /* SoccerLeagueCoordinatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoccerLeagueCoordinatorUITests.swift; sourceTree = "<group>"; };
 		73CDA72D1D87B124003E5EB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		73CDA7391D87B141003E5EB1 /* SoccerLeagueCoordinator.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SoccerLeagueCoordinator.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +78,7 @@
 		73CDA6FF1D87B124003E5EB1 = {
 			isa = PBXGroup;
 			children = (
+				73CDA7391D87B141003E5EB1 /* SoccerLeagueCoordinator.playground */,
 				73CDA70A1D87B124003E5EB1 /* SoccerLeagueCoordinator */,
 				73CDA71F1D87B124003E5EB1 /* SoccerLeagueCoordinatorTests */,
 				73CDA72A1D87B124003E5EB1 /* SoccerLeagueCoordinatorUITests */,
