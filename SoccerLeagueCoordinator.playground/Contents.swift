@@ -121,29 +121,11 @@ var tallExperienced: [[String: String]] = []
 var shortInexperienced: [[String: String]] = []
 var tallInexperienced: [[String: String]] = []
 
-var teamSize = players.count/3
-
-
-
 var sharks: [[String: String]] = []
 var dragons: [[String: String]] = []
 var raptors: [[String: String]] = []
 
-
-
 var totalHeight: Double = Double()
-var meanHeight: Double = Double()
-
-for person in players
-{
-    totalHeight += Double(person["height"]!)!
-}
-print(totalHeight)
-totalHeight
-
-meanHeight = totalHeight / Double(players.count)
-
-
 
 
 
@@ -157,100 +139,130 @@ func assignTeams() {
             playersWithoutExperience.append(player)
         }
     }
-    
-  
-//Players with experience height
-    for player in playersWithExperience {
-//        let heightTotal = players.flatMap({ Double($0["height"]!) }).reduce(0, +)
-//        let heightMean = heightTotal / Double(players.count)
-        if Double(player ["height"]!)! <= meanHeight {
-            shortExperienced.append(player)
-        }else{
-            tallExperienced.append(player)
-        }
-    }
-    shortExperienced.count
-    tallExperienced.count
-    
-//Players without experience height
-    for player in playersWithoutExperience {
-//        let heightTotal = players.flatMap({ Double($0["height"]!) }).reduce(0, +)
-//        let heightMean = heightTotal / Double(players.count)
-        if Double(player ["height"]!)! <= meanHeight {
-            shortInexperienced.append(player)
-        }else{
-            tallInexperienced.append(player)
-        }
-    }
-    shortInexperienced.count
-    tallInexperienced.count
-    
 
     
-
+//Sort players by height
+    _ = playersWithExperience.sort {
+        if ($0["height"] == $1["height"]) {
+            return $0["height"]! < $1["height"]!
+        } else {
+            return $0["height"]! < $1["height"]!
+        }
+    }
+    
+    _ = playersWithoutExperience.sort {
+        if ($0["height"] == $1["height"]) {
+            return $0["height"]! < $1["height"]!
+        } else {
+            return $0["height"]! < $1["height"]!
+        }
+    }
+    
+    
 //Assign teams
-    //Assign short experienced
-    
     
     var numberInArray = 0
-    let shortCount = shortExperienced.count
-    while shortCount > 0 {
-        sharks.append(shortExperienced[numberInArray])
-        numberInArray += 1
-        if (shortCount <= 1) {
-            break
-        }
-        dragons.append(shortExperienced[numberInArray])
-        numberInArray += 1
-        if (shortCount <= 1) {
-            break
-        }
-        raptors.append(shortExperienced[numberInArray])
-        numberInArray += 1
-        if (shortCount <= 1) {
-            break
-        }
-    }
-    sharks.count
-    print(sharks)
-    dragons.count
-    print(dragons)
-    raptors.count
-    print(raptors)
-    
-    
+    var experiencedCount = playersWithExperience.count
+    while experiencedCount > 1 {
 
-    
-    //Assign tall experienced
-    for player in tallExperienced {
-        
+        sharks.append(playersWithExperience[numberInArray])
+        numberInArray += 1
+        experiencedCount -= 1
+
+        dragons.append(playersWithExperience[numberInArray])
+        numberInArray += 1
+        experiencedCount -= 1
+
+        raptors.append(playersWithExperience[numberInArray])
+        numberInArray += 1
+        experiencedCount -= 1
     }
     
-    //Assign short inexperienced
-    for player in shortInexperienced {
+    var inexperiencedArray = 0
+    var inexperiencedCount = playersWithoutExperience.count
+    while inexperiencedCount > 1 {
         
+        raptors.append(playersWithoutExperience[inexperiencedArray])
+        inexperiencedArray += 1
+        inexperiencedCount -= 1
+        
+        dragons.append(playersWithoutExperience[inexperiencedArray])
+        inexperiencedArray += 1
+        inexperiencedCount -= 1
+        
+        sharks.append(playersWithoutExperience[inexperiencedArray])
+        inexperiencedArray += 1
+        inexperiencedCount -= 1
     }
     
-    //Assign tall inexperienced
-    for player in tallInexperienced {
-        
+//Print out roster
+    func printRoster(team: [[String: String]]) {
+        for player in team {
+            let playerName = player["name"]!
+            print(playerName)
+        }
     }
+    print("Sharks player count: \(sharks.count)")
+    printRoster(team: sharks)
+    print("Dragons player count: \(dragons.count)")
+    printRoster(team: dragons)
+    print("Raptors player count: \(raptors.count)")
+    printRoster(team: raptors)
+    
+//Check if difference in height is 1.5"
+    func findTeamMean(team: [[String: String]]) -> Double {
+        var teamMean: Double = Double()
+        var totalHeight: Double = Double()
+        for person in team {
+            totalHeight += Double(person["height"]!)!
+        }
+        teamMean = totalHeight / Double(team.count)
+        return teamMean
+    }
+
+    let sharksAverageHeight = findTeamMean(team: sharks)
+    let dragonsAverageHeight = findTeamMean(team: dragons)
+    let raptorsAverageHeight = findTeamMean(team: raptors)
+
+    if sharksAverageHeight - dragonsAverageHeight <= 1.5 &&
+        sharksAverageHeight - raptorsAverageHeight <= 1.5 &&
+        dragonsAverageHeight - raptorsAverageHeight <= 1.5 {
+        print("All team heights within 1.5 inch range")
+    }else{
+        print("Team heights not within 1.5 inch range")
+    }
+    
+    
+//Print message to guardians
+    let sharksFirstPractice = "March 17th, 3pm"
+    let sharksName = "Sharks"
+    let dragonsFirstPractice = "March 17th, 1pm"
+    let dragonsName = "Dragons"
+    let raptorsFirstPractice = "March 18th, 1pm"
+    let raptorsName = "Raptors"
+    
+    func printMessages(team: [[String: String]], teamName: String, firstPractice: String) {
+        for player in team {
+            let guardians = player["guardian"]!
+            let playerName = player["name"]
+            
+            print("Dear \(guardians)/n/nThe \(teamName) would like to welcome your child \(playerName) to the team. The \(teamName) first practice will be on \(firstPractice). Good luck!/n/n/n/nBrandon Mahoney/nSoccer League Coordinator")
+        }
+    }
+    
+printMessages(team: sharks, teamName: sharksName, firstPractice: sharksFirstPractice)
+printMessages(team: dragons, teamName: dragonsName, firstPractice: dragonsFirstPractice)
+printMessages(team: dragons, teamName: dragonsName, firstPractice: dragonsFirstPractice)
+    
+    
+    
     
 }
 
 
 assignTeams()
-playersWithExperience
-playersWithExperience.count
-playersWithoutExperience
-playersWithoutExperience.count
 
-shortExperienced
-shortExperienced.count
-tallExperienced
-tallExperienced.count
 
-shortInexperienced
-shortInexperienced.count
-tallInexperienced
-tallInexperienced.count
+
+
+
