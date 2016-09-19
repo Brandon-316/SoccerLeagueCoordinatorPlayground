@@ -116,11 +116,6 @@ let players = [
 var playersWithExperience: [[String: String]] = []
 var playersWithoutExperience: [[String: String]] = []
 
-var shortExperienced: [[String: String]] = []
-var tallExperienced: [[String: String]] = []
-var shortInexperienced: [[String: String]] = []
-var tallInexperienced: [[String: String]] = []
-
 var sharks: [[String: String]] = []
 var dragons: [[String: String]] = []
 var raptors: [[String: String]] = []
@@ -128,9 +123,7 @@ var raptors: [[String: String]] = []
 var totalHeight: Double = Double()
 
 
-
 func assignTeams() {
-
 // Seperate players by experience
     for player in players {
         if player ["experience"] == "YES"{
@@ -140,7 +133,6 @@ func assignTeams() {
         }
     }
 
-    
 //Sort players by height
     _ = playersWithExperience.sort {
         if ($0["height"] == $1["height"]) {
@@ -158,9 +150,7 @@ func assignTeams() {
         }
     }
     
-    
 //Assign teams
-    
     var numberInArray = 0
     var experiencedCount = playersWithExperience.count
     while experiencedCount > 1 {
@@ -253,12 +243,7 @@ func assignTeams() {
 printMessages(team: sharks, teamName: sharksName, firstPractice: sharksFirstPractice)
 printMessages(team: dragons, teamName: dragonsName, firstPractice: dragonsFirstPractice)
 printMessages(team: dragons, teamName: dragonsName, firstPractice: dragonsFirstPractice)
-    
-    
-    
-    
 }
-
 
 assignTeams()
 
