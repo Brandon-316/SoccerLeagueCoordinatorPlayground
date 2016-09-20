@@ -192,12 +192,13 @@ func assignTeams() {
             print(playerName)
         }
     }
-    print("Sharks player count: \(sharks.count)")
     printRoster(team: sharks)
-    print("Dragons player count: \(dragons.count)")
+    print("Sharks player count: \(sharks.count)\n")
     printRoster(team: dragons)
-    print("Raptors player count: \(raptors.count)")
+    print("Dragons player count: \(dragons.count)\n")
     printRoster(team: raptors)
+    print("Raptors player count: \(raptors.count)\n")
+
     
 //Check if difference in height is 1.5"
     func findTeamMean(team: [[String: String]]) -> Double {
@@ -217,9 +218,9 @@ func assignTeams() {
     if sharksAverageHeight - dragonsAverageHeight <= 1.5 &&
         sharksAverageHeight - raptorsAverageHeight <= 1.5 &&
         dragonsAverageHeight - raptorsAverageHeight <= 1.5 {
-        print("All team heights within 1.5 inch range")
+        print("\nAll team heights within 1.5 inch range\n\n")
     }else{
-        print("Team heights not within 1.5 inch range")
+        print("\nTeam heights not within 1.5 inch range\n\n")
     }
     
     
@@ -234,15 +235,15 @@ func assignTeams() {
     func printMessages(team: [[String: String]], teamName: String, firstPractice: String) {
         for player in team {
             let guardians = player["guardian"]!
-            let playerName = player["name"]
+            let playerName = player["name"]!
             
-            print("Dear \(guardians)/n/nThe \(teamName) would like to welcome your child \(playerName) to the team. The \(teamName) first practice will be on \(firstPractice). Good luck!/n/n/n/nBrandon Mahoney/nSoccer League Coordinator")
+            print("Dear \(guardians)\n\nThe \(teamName) would like to welcome your child \(playerName) to the team. The \(teamName) first practice will be on \(firstPractice). Good luck!\n\n\nBrandon Mahoney\nSoccer League Coordinator\n\n\n")
         }
     }
     
 printMessages(team: sharks, teamName: sharksName, firstPractice: sharksFirstPractice)
 printMessages(team: dragons, teamName: dragonsName, firstPractice: dragonsFirstPractice)
-printMessages(team: dragons, teamName: dragonsName, firstPractice: dragonsFirstPractice)
+printMessages(team: raptors, teamName: raptorsName, firstPractice: raptorsFirstPractice)
 }
 
 assignTeams()
