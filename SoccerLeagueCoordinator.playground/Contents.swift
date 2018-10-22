@@ -80,7 +80,9 @@ func findAverageHeight(of team: [[String: String]]) -> Double {
     var teamMean = Double()
     var totalHeight = Double()
     for person in team {
-        totalHeight += Double(person["height"]!)!
+        guard let personsHeight = person["height"],
+            let heightDouble = Double(personsHeight) else { break }
+        totalHeight += Double(heightDouble)
     }
     teamMean = totalHeight / Double(team.count)
     return teamMean
@@ -113,8 +115,9 @@ func printRoster(for teamName: String, players: [[String: String]]) {
     print("\n\(teamName) Players:")
     var playerNum = 1
     for player in players {
-        let playerName = player["name"]!
-        print("\(playerNum). \(playerName)")
+        if let playerName = player["name"] {
+            print("\(playerNum). \(playerName)")
+        }
         playerNum += 1
     }
 }
