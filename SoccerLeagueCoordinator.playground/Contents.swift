@@ -2,6 +2,9 @@
 
 import UIKit
 
+////////////////
+// Properties //
+////////////////
 let players = [
     [
         "name": "Joe Smith",
@@ -113,142 +116,143 @@ let players = [
     ]
 ]
 
-var playersWithExperience: [[String: String]] = []
-var playersWithoutExperience: [[String: String]] = []
+// Player collections by experience
+var playersWithExperience = [[String: String]]()
+var playersWithoutExperience = [[String: String]]()
 
-var sharks: [[String: String]] = []
-var dragons: [[String: String]] = []
-var raptors: [[String: String]] = []
+// Team player collections
+var sharks = [[String: String]]()
+var dragons = [[String: String]]()
+var raptors = [[String: String]]()
 
-var totalHeight: Double = Double()
+// Team info
+let sharksInfo = ["name": "Sharks", "firstPractice": "March 17th, 3pm"]
+let dragonsInfo = ["name": "Dragons", "firstPractice": "March 17th, 1pm"]
+let raptorsInfo = ["name": "Raptors", "firstPractice": "March 18th, 1pm"]
 
 
-func assignTeams() {
-// Seperate players by experience
+
+/////////////
+// Methods //
+/////////////
+func separatePlayersByExperience(in players: [[String: String]]) {
     for player in players {
-        if player ["experience"] == "YES"{
+        if player["experience"] == "YES" {
             playersWithExperience.append(player)
-        }else{
+        } else {
             playersWithoutExperience.append(player)
         }
     }
-
-//Sort players by height
-    _ = playersWithExperience.sort {
-        if ($0["height"] == $1["height"]) {
-            return $0["height"]! < $1["height"]!
-        } else {
-            return $0["height"]! < $1["height"]!
-        }
-    }
-    
-    _ = playersWithoutExperience.sort {
-        if ($0["height"] == $1["height"]) {
-            return $0["height"]! < $1["height"]!
-        } else {
-            return $0["height"]! < $1["height"]!
-        }
-    }
-    
-//Assign teams
-    var numberInArray = 0
-    var experiencedCount = playersWithExperience.count
-    while experiencedCount > 1 {
-
-        sharks.append(playersWithExperience[numberInArray])
-        numberInArray += 1
-        experiencedCount -= 1
-
-        dragons.append(playersWithExperience[numberInArray])
-        numberInArray += 1
-        experiencedCount -= 1
-
-        raptors.append(playersWithExperience[numberInArray])
-        numberInArray += 1
-        experiencedCount -= 1
-    }
-    
-    var inexperiencedArray = 0
-    var inexperiencedCount = playersWithoutExperience.count
-    while inexperiencedCount > 1 {
-        
-        raptors.append(playersWithoutExperience[inexperiencedArray])
-        inexperiencedArray += 1
-        inexperiencedCount -= 1
-        
-        dragons.append(playersWithoutExperience[inexperiencedArray])
-        inexperiencedArray += 1
-        inexperiencedCount -= 1
-        
-        sharks.append(playersWithoutExperience[inexperiencedArray])
-        inexperiencedArray += 1
-        inexperiencedCount -= 1
-    }
-    
-//Print out roster
-    func printRoster(team: [[String: String]]) {
-        for player in team {
-            let playerName = player["name"]!
-            print(playerName)
-        }
-    }
-    printRoster(team: sharks)
-    print("Sharks player count: \(sharks.count)\n")
-    printRoster(team: dragons)
-    print("Dragons player count: \(dragons.count)\n")
-    printRoster(team: raptors)
-    print("Raptors player count: \(raptors.count)\n")
-
-    
-//Check if difference in height is 1.5"
-    func findTeamMean(team: [[String: String]]) -> Double {
-        var teamMean: Double = Double()
-        var totalHeight: Double = Double()
-        for person in team {
-            totalHeight += Double(person["height"]!)!
-        }
-        teamMean = totalHeight / Double(team.count)
-        return teamMean
-    }
-
-    let sharksAverageHeight = findTeamMean(team: sharks)
-    let dragonsAverageHeight = findTeamMean(team: dragons)
-    let raptorsAverageHeight = findTeamMean(team: raptors)
-
-    if sharksAverageHeight - dragonsAverageHeight <= 1.5 &&
-        sharksAverageHeight - raptorsAverageHeight <= 1.5 &&
-        dragonsAverageHeight - raptorsAverageHeight <= 1.5 {
-        print("\nAll team heights within 1.5 inch range\n\n")
-    }else{
-        print("\nTeam heights not within 1.5 inch range\n\n")
-    }
-    
-    
-//Print message to guardians
-    let sharksFirstPractice = "March 17th, 3pm"
-    let sharksName = "Sharks"
-    let dragonsFirstPractice = "March 17th, 1pm"
-    let dragonsName = "Dragons"
-    let raptorsFirstPractice = "March 18th, 1pm"
-    let raptorsName = "Raptors"
-    
-    func printMessages(team: [[String: String]], teamName: String, firstPractice: String) {
-        for player in team {
-            let guardians = player["guardian"]!
-            let playerName = player["name"]!
-            
-            print("Dear \(guardians)\n\nThe \(teamName) would like to welcome your child \(playerName) to the team. The \(teamName) first practice will be on \(firstPractice). Good luck!\n\n\nBrandon Mahoney\nSoccer League Coordinator\n\n\n")
-        }
-    }
-    
-printMessages(team: sharks, teamName: sharksName, firstPractice: sharksFirstPractice)
-printMessages(team: dragons, teamName: dragonsName, firstPractice: dragonsFirstPractice)
-printMessages(team: raptors, teamName: raptorsName, firstPractice: raptorsFirstPractice)
 }
 
+func assign(players: [[String: String]]) {
+    var numberInArray = 0
+    var playersCount = players.count
+    while playersCount > 0 {
+        
+        sharks.append(playersWithExperience[numberInArray])
+        numberInArray += 1
+        playersCount -= 1
+        if playersCount == 0 { break }
+        
+        dragons.append(playersWithExperience[numberInArray])
+        numberInArray += 1
+        playersCount -= 1
+        if playersCount == 0 { break }
+        
+        raptors.append(playersWithExperience[numberInArray])
+        numberInArray += 1
+        playersCount -= 1
+        if playersCount == 0 { break }
+    }
+}
+
+func findAverageHeight(of team: [[String: String]]) -> Double {
+    var teamMean = Double()
+    var totalHeight = Double()
+    for person in team {
+        totalHeight += Double(person["height"]!)!
+    }
+    teamMean = totalHeight / Double(team.count)
+    return teamMean
+}
+
+func compareTeamHeights() -> Bool {
+    let sharksAverageHeight = findAverageHeight(of: sharks)
+    let dragonsAverageHeight = findAverageHeight(of: dragons)
+    let raptorsAverageHeight = findAverageHeight(of: raptors)
+    
+    if fabs(sharksAverageHeight - dragonsAverageHeight) <= 1.5 && fabs(sharksAverageHeight - raptorsAverageHeight) <= 1.5 && fabs(dragonsAverageHeight - raptorsAverageHeight) <= 1.5 {
+        let heighDifference = heightDifference(for: [sharksAverageHeight, dragonsAverageHeight, raptorsAverageHeight])
+        print("\nSharks height: \(sharksAverageHeight)\nDragons height: \(dragonsAverageHeight)\nRaptors height: \(raptorsAverageHeight)\n")
+        print("\nAll team heights within \(heighDifference) inch range\n\n")
+        return true
+    }else{
+        print("\nTeam heights not within 1.5 inch range. Resetting teams and recursively calling assignTeams()\n\n")
+        return false
+    }
+}
+
+func heightDifference(for avgHeights: [Double]) -> Double{
+    var heights = avgHeights
+    heights.sort { $0 < $1 }
+    
+    return heights[heights.count - 1] - heights[0]
+}
+
+func printRoster(for teamName: String, players: [[String: String]]) {
+    print("\n\(teamName) Players:")
+    var playerNum = 1
+    for player in players {
+        let playerName = player["name"]!
+        print("\(playerNum). \(playerName)")
+        playerNum += 1
+    }
+}
+
+func printMessages(team: [[String: String]], teamInfo: [String: String]) {
+    print("\(String(describing: teamInfo["name"]))")
+    for player in team {
+        guard let guardians = player["guardian"],
+            let playerName = player["name"],
+            let teamName = teamInfo["name"],
+            let firstPractice = teamInfo["firstPractice"]
+            else { return }
+        
+        print("\n----------\nDear \(guardians)\n\nThe \(teamName) would like to welcome your child \(playerName) to the team. The \(teamName) first practice will be on \(firstPractice). Good luck!\n\n\nBrandon Mahoney\nSoccer League Coordinator\n----------\n\n")
+    }
+}
+
+func resetTeams() {
+    sharks.removeAll()
+    dragons.removeAll()
+    raptors.removeAll()
+}
+
+func assignTeams() {
+    playersWithExperience.shuffle()
+    playersWithoutExperience.shuffle()
+    
+    //Assign teams
+    assign(players: playersWithoutExperience)
+    assign(players: playersWithExperience)
+    
+    if compareTeamHeights() {
+        //Print out roster
+        printRoster(for: "Sharks", players: sharks)
+        printRoster(for: "Dragons", players: dragons)
+        printRoster(for: "Raptors", players: raptors)
+        
+        print("\n----------Letters----------\n")
+        printMessages(team: sharks, teamInfo: sharksInfo)
+        printMessages(team: dragons, teamInfo: dragonsInfo)
+        printMessages(team: raptors, teamInfo: raptorsInfo)
+    } else {
+        resetTeams()
+        assignTeams()
+    }
+    
+}
+
+separatePlayersByExperience(in: players)
 assignTeams()
-
-
-
-
-
