@@ -47,7 +47,7 @@
 		73CDA7271D87B124003E5EB1 /* SoccerLeagueCoordinatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoccerLeagueCoordinatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		73CDA72B1D87B124003E5EB1 /* SoccerLeagueCoordinatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoccerLeagueCoordinatorUITests.swift; sourceTree = "<group>"; };
 		73CDA72D1D87B124003E5EB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		73CDA7391D87B141003E5EB1 /* SoccerLeagueCoordinator.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SoccerLeagueCoordinator.playground; sourceTree = "<group>"; };
+		73CDA7391D87B141003E5EB1 /* SoccerLeagueCoordinator.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SoccerLeagueCoordinator.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -505,6 +505,7 @@
 				73CDA7321D87B124003E5EB1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		73CDA7331D87B124003E5EB1 /* Build configuration list for PBXNativeTarget "SoccerLeagueCoordinatorTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +514,7 @@
 				73CDA7351D87B124003E5EB1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		73CDA7361D87B124003E5EB1 /* Build configuration list for PBXNativeTarget "SoccerLeagueCoordinatorUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +523,7 @@
 				73CDA7381D87B124003E5EB1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

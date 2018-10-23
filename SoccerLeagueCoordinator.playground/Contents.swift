@@ -99,7 +99,7 @@ func compareTeamHeights() -> Bool {
         print("\nAll team heights within \(heighDifference) inch range\n\n")
         return true
     }else{
-        print("\nTeam heights not within 1.5 inch range. Resetting teams and recursively calling assignTeams()\n\n")
+//        print("\nTeam heights not within 1.5 inch range. Resetting teams and recursively calling assignTeams()\n\n")
         return false
     }
 }
